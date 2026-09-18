@@ -1,0 +1,20 @@
+## Interface: 16001
+## Version: 1.00
+## Author: Pirson
+## Title: |cffd597ffHealth Text Forever|r
+## Notes: |cFF33CCFFAlways shows health and power on the player and target frames: value, percent or both.|r
+## Notes-esES: |cFF33CCFFMuestra siempre la vida y el poder en los marcos del jugador y del objetivo: valor, porcentaje o ambos.|r
+## Notes-esMX: |cFF33CCFFMuestra siempre la vida y el poder en los marcos del jugador y del objetivo: valor, porcentaje o ambos.|r
+
+# https://warcraft.wiki.gg/wiki/Addon_Categories
+## Category: Unit Frames
+## Category-esES: Marcos de unidad
+## Category-esMX: Marcos de unidad
+
+## SavedVariables: HealthTextForeverDB
+
+# Solo WoW Forever: el sufijo _Camelot es el game type que busca ese cliente, y
+# sin un .toc generico ningun otro cliente lista el addon.
+
+Locales.lua
+HealthTextForever.lua
