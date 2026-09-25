@@ -1,0 +1,125 @@
+## Interface: 16001
+## Version: 1.01
+## Author: Pirson
+## IconTexture: Interface\AddOns\HealthBarTextForever\img\logo_htf
+## Title: |cffd597ffHealth Bar Text Forever|r
+
+# https://warcraft.wiki.gg/wiki/Addon_Categories
+## Category: Unit Frames
+## Category-deDE: Einheitenfenster
+## Category-esES: Marcos de unidad
+## Category-esMX: Marcos de unidad
+## Category-frFR: Cadres d'unité
+## Category-itIT: Riquadri delle unità
+## Category-koKR: 개체 창
+## Category-ptBR: Quadros de unidade
+## Category-ruRU: Рамки юнитов
+## Category-zhCN: 单位框体
+## Category-zhTW: 單位框架
+## Category-plPL: Ramki jednostek
+## Category-svSE: Enhetsramar
+## Category-noNO: Enhetsrammer
+## Category-csCZ: Rámečky jednotek
+## Category-nlNL: Eenheidsframes
+## Category-roRO: Cadre de unitate
+## Category-huHU: Egységkeretek
+## Category-elGR: Πλαίσια μονάδων
+## Category-ukUA: Рамки юнітів
+## Category-daDK: Enhedsrammer
+## Category-fiFI: Yksikkökehykset
+## Category-skSK: Rámčeky jednotiek
+## Category-bgBG: Рамки на единици
+## Category-hrHR: Okviri jedinica
+## Category-srRS: Okviri jedinica
+## Category-slSI: Okvirji enot
+## Category-ltLT: Vienetų rėmeliai
+## Category-lvLV: Vienību rāmji
+## Category-etEE: Üksuste raamid
+## Category-idID: Bingkai unit
+## Category-msMY: Bingkai unit
+## Category-faIR: قاب‌های واحد
+## Category-heIL: מסגרות יחידה
+## Category-bnBD: ইউনিট ফ্রেম
+## Category-urPK: یونٹ فریمز
+## Category-taIN: அலகு சட்டங்கள்
+## Category-teIN: యూనిట్ ఫ్రేమ్‌లు
+## Category-trTR: Birim çerçeveleri
+## Category-jaJP: ユニットフレーム
+## Category-arSA: إطارات الوحدات
+## Category-hiIN: यूनिट फ़्रेम
+## Category-thTH: กรอบยูนิต
+## Category-viVN: Khung đơn vị
+
+## Notes: |cFF33CCFFAlways shows health and power on the player and target frames: value, percent, short or both.|r
+## Notes-deDE: |cFF33CCFFZeigt Gesundheit und Energie immer auf dem Spieler- und Zielrahmen an: Wert, Prozent, kurz oder beides.|r
+## Notes-esES: |cFF33CCFFMuestra siempre la vida y el poder en los marcos del jugador y del objetivo: valor, porcentaje, abreviado o ambos.|r
+## Notes-esMX: |cFF33CCFFMuestra siempre la vida y el poder en los marcos del jugador y del objetivo: valor, porcentaje, abreviado o ambos.|r
+## Notes-frFR: |cFF33CCFFAffiche toujours la vie et la puissance sur les cadres du joueur et de la cible : valeur, pourcentage, abrégé ou les deux.|r
+## Notes-itIT: |cFF33CCFFMostra sempre salute e potere sui riquadri del giocatore e del bersaglio: valore, percentuale, abbreviato o entrambi.|r
+## Notes-koKR: |cFF33CCFF플레이어와 대상 프레임에 생명력과 자원을 항상 표시합니다: 수치, 백분율, 축약 또는 둘 다.|r
+## Notes-ptBR: |cFF33CCFFMostra sempre a vida e o poder nos quadros do jogador e do alvo: valor, porcentagem, abreviado ou ambos.|r
+## Notes-ruRU: |cFF33CCFFВсегда показывает здоровье и ресурс на рамках игрока и цели: значение, процент, сокращённо или оба.|r
+## Notes-zhCN: |cFF33CCFF在玩家和目标框体上始终显示生命值和能量：数值、百分比、缩写或两者。|r
+## Notes-zhTW: |cFF33CCFF在玩家和目標框架上始終顯示生命值和能量：數值、百分比、縮寫或兩者。|r
+## Notes-plPL: |cFF33CCFFZawsze pokazuje zdrowie i moc na ramkach gracza i celu: wartość, procent, skrót lub oba.|r
+## Notes-svSE: |cFF33CCFFVisar alltid hälsa och kraft på spelar- och målramen: värde, procent, förkortat eller båda.|r
+## Notes-noNO: |cFF33CCFFViser alltid helse og kraft på spiller- og målrammen: verdi, prosent, forkortet eller begge.|r
+## Notes-csCZ: |cFF33CCFFVždy zobrazuje zdraví a energii na rámečcích hráče a cíle: hodnota, procenta, zkráceně nebo obojí.|r
+## Notes-nlNL: |cFF33CCFFToont altijd gezondheid en kracht op de speler- en doelframes: waarde, procent, kort of beide.|r
+## Notes-roRO: |cFF33CCFFAfișează mereu viața și puterea pe cadrele jucătorului și țintei: valoare, procent, prescurtat sau ambele.|r
+## Notes-huHU: |cFF33CCFFMindig mutatja az életerőt és az erőforrást a játékos- és célpontkereten: érték, százalék, rövidített vagy mindkettő.|r
+## Notes-elGR: |cFF33CCFFΕμφανίζει πάντα την υγεία και την ισχύ στα πλαίσια παίκτη και στόχου: τιμή, ποσοστό, σύντομα ή και τα δύο.|r
+## Notes-ukUA: |cFF33CCFFЗавжди показує здоров'я та ресурс на рамках гравця й цілі: значення, відсоток, скорочено або обидва.|r
+## Notes-daDK: |cFF33CCFFViser altid helbred og kraft på spiller- og målrammen: værdi, procent, forkortet eller begge.|r
+## Notes-fiFI: |cFF33CCFFNäyttää aina terveyden ja voiman pelaajan ja kohteen kehyksissä: arvo, prosentti, lyhyt tai molemmat.|r
+## Notes-skSK: |cFF33CCFFVždy zobrazuje zdravie a energiu na rámčekoch hráča a cieľa: hodnota, percentá, skrátene alebo oboje.|r
+## Notes-bgBG: |cFF33CCFFВинаги показва здравето и силата на рамките на играча и целта: стойност, процент, съкратено или и двете.|r
+## Notes-hrHR: |cFF33CCFFUvijek prikazuje zdravlje i snagu na okvirima igrača i mete: vrijednost, postotak, skraćeno ili oboje.|r
+## Notes-srRS: |cFF33CCFFUvek prikazuje zdravlje i snagu na okvirima igrača i mete: vrednost, procenat, skraćeno ili oboje.|r
+## Notes-slSI: |cFF33CCFFVedno prikazuje zdravje in moč na okvirjih igralca in tarče: vrednost, odstotek, skrajšano ali oboje.|r
+## Notes-ltLT: |cFF33CCFFVisada rodo gyvybę ir galią žaidėjo ir taikinio rėmeliuose: reikšmę, procentus, sutrumpintai ar abu.|r
+## Notes-lvLV: |cFF33CCFFVienmēr rāda veselību un spēku spēlētāja un mērķa rāmjos: vērtību, procentus, saīsināti vai abus.|r
+## Notes-etEE: |cFF33CCFFNäitab alati tervist ja jõudu mängija ja sihtmärgi raamidel: väärtus, protsent, lühendatult või mõlemad.|r
+## Notes-idID: |cFF33CCFFSelalu menampilkan darah dan energi di bingkai pemain dan target: nilai, persen, singkat, atau keduanya.|r
+## Notes-msMY: |cFF33CCFFSentiasa menunjukkan nyawa dan kuasa pada bingkai pemain dan sasaran: nilai, peratus, ringkas atau kedua-duanya.|r
+## Notes-faIR: |cFF33CCFFسلامتی و توان را همیشه روی قاب‌های بازیکن و هدف نشان می‌دهد: مقدار، درصد، کوتاه یا هر دو.|r
+## Notes-heIL: |cFF33CCFFמציג תמיד בריאות וכוח על מסגרות השחקן והמטרה: ערך, אחוז, מקוצר או שניהם.|r
+## Notes-bnBD: |cFF33CCFFপ্লেয়ার ও টার্গেট ফ্রেমে সবসময় স্বাস্থ্য ও শক্তি দেখায়: মান, শতাংশ, সংক্ষিপ্ত বা দুটোই।|r
+## Notes-urPK: |cFF33CCFFپلیئر اور ٹارگٹ فریمز پر ہمیشہ صحت اور طاقت دکھاتا ہے: قدر، فیصد، مختصر یا دونوں۔|r
+## Notes-taIN: |cFF33CCFFவீரர் மற்றும் இலக்கு சட்டங்களில் எப்போதும் உயிர் மற்றும் சக்தியைக் காட்டுகிறது: மதிப்பு, சதவீதம், சுருக்கம் அல்லது இரண்டும்.|r
+## Notes-teIN: |cFF33CCFFప్లేయర్ మరియు లక్ష్య ఫ్రేమ్‌లపై ఎల్లప్పుడూ ఆరోగ్యం మరియు శక్తిని చూపిస్తుంది: విలువ, శాతం, సంక్షిప్తం లేదా రెండూ.|r
+## Notes-trTR: |cFF33CCFFOyuncu ve hedef çerçevelerinde can ve gücü her zaman gösterir: değer, yüzde, kısaltılmış veya ikisi.|r
+## Notes-jaJP: |cFF33CCFFプレイヤーとターゲットのフレームに体力とパワーを常に表示：数値、パーセント、短縮、または両方。|r
+## Notes-arSA: |cFF33CCFFيعرض الصحة والطاقة دائمًا على إطاري اللاعب والهدف: القيمة أو النسبة أو المختصر أو كلاهما.|r
+## Notes-hiIN: |cFF33CCFFखिलाड़ी और लक्ष्य फ़्रेम पर हमेशा स्वास्थ्य और शक्ति दिखाता है: मान, प्रतिशत, संक्षिप्त या दोनों।|r
+## Notes-thTH: |cFF33CCFFแสดงพลังชีวิตและพลังงานบนกรอบผู้เล่นและเป้าหมายตลอดเวลา: ค่า เปอร์เซ็นต์ แบบย่อ หรือทั้งสองแบบ|r
+## Notes-viVN: |cFF33CCFFLuôn hiện máu và năng lượng trên khung người chơi và mục tiêu: giá trị, phần trăm, rút gọn hoặc cả hai.|r
+
+## SavedVariables: HealthBarTextForeverDB
+
+# Solo WoW Forever: el sufijo _Camelot es el game type que busca ese cliente, y
+# sin un .toc generico ningun otro cliente lista el addon.
+
+Locales/enUS.lua
+Locales/esES.lua
+Locales/deDE.lua
+Locales/frFR.lua
+Locales/itIT.lua
+Locales/ptBR.lua
+Locales/ruRU.lua
+Locales/koKR.lua
+Locales/zhCN.lua
+Locales/zhTW.lua
+Locales/plPL.lua
+Locales/svSE.lua
+Locales/noNO.lua
+Locales/trTR.lua
+Locales/jaJP.lua
+Locales/arSA.lua
+Locales/hiIN.lua
+Locales/thTH.lua
+Locales/viVN.lua
+Locales/csCZ.lua
+Core/HealthBarTextForever.lua
+UI/About.lua
+UI/Options.lua
