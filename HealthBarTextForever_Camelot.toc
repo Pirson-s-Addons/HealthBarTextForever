@@ -96,6 +96,7 @@
 ## Notes-viVN: |cFF33CCFFLuôn hiện máu và năng lượng trên khung người chơi và mục tiêu: giá trị, phần trăm, rút gọn hoặc cả hai.|r
 
 ## SavedVariables: HealthBarTextForeverDB
+## OptionalDeps: HealthTextForever
 
 # Solo WoW Forever: el sufijo _Camelot es el game type que busca ese cliente, y
 # sin un .toc generico ningun otro cliente lista el addon.
