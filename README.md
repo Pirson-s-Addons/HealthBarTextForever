@@ -1,7 +1,7 @@
 <h1 align="center">Health Bar Text Forever</h1>
 
 <p align="center">
-  <b>Always-visible health and power text on the player, target and focus frames for World of Warcraft: Forever</b>
+  <b>Always-visible health and power text on the player, pet, target and focus frames for World of Warcraft: Forever</b>
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
 
 ## What it does
 
-By default, WoW Forever only shows your health and power numbers when you hover the bar. **Health Bar Text Forever** keeps them always visible on the **player**, **target**, **target of target**, **focus** and **target of focus** frames, in the format you choose for each one.
+By default, WoW Forever only shows your health and power numbers when you hover the bar. **Health Bar Text Forever** keeps them always visible on the **player**, **pet / minion**, **target**, **target of target**, **focus** and **target of focus** frames, in the format you choose for each one.
 
 | Format | Example |
 |---|---|
@@ -33,7 +33,7 @@ By default, WoW Forever only shows your health and power numbers when you hover 
 
 ## Features
 
-- Always-visible health and power (mana, rage, energy...) on the player, target, target of target, focus and target of focus frames.
+- Always-visible health and power (mana, rage, energy...) on the player, pet / minion, target, target of target, focus and target of focus frames.
 - Turn each frame on or off: an off frame goes back to Blizzard's default behavior.
 - Four formats, chosen per frame: value, percent, short or both.
 - Optional text on the power bars (on by default). Turn it off and those bars go back to Blizzard's default behavior.
@@ -61,7 +61,7 @@ In WoW Forever, health and power are **secret values** for addons during combat:
 
 ## 🇪🇸 Español
 
-Por defecto, WoW Forever solo muestra los números de vida y poder al pasar el ratón por la barra. **Health Bar Text Forever** los mantiene siempre visibles en los marcos del **jugador**, el **objetivo**, el **objetivo del objetivo**, el **foco** y el **objetivo del foco**, en el formato que elijas para cada uno.
+Por defecto, WoW Forever solo muestra los números de vida y poder al pasar el ratón por la barra. **Health Bar Text Forever** los mantiene siempre visibles en los marcos del **jugador**, la **mascota / esbirro**, el **objetivo**, el **objetivo del objetivo**, el **foco** y el **objetivo del foco**, en el formato que elijas para cada uno.
 
 | Formato | Ejemplo |
 |---|---|
@@ -72,7 +72,7 @@ Por defecto, WoW Forever solo muestra los números de vida y poder al pasar el r
 
 ### Funciones
 
-- Vida y poder (maná, ira, energía...) siempre visibles en los marcos del jugador, el objetivo, el objetivo del objetivo, el foco y el objetivo del foco.
+- Vida y poder (maná, ira, energía...) siempre visibles en los marcos del jugador, la mascota / esbirro, el objetivo, el objetivo del objetivo, el foco y el objetivo del foco.
 - Cada marco se activa o desactiva por separado: desactivado, vuelve al comportamiento de Blizzard.
 - Cuatro formatos, a elegir por marco: valor, porcentaje, abreviado o ambos.
 - Texto opcional en las barras de poder (activado por defecto). Si lo desactivas, esas barras vuelven al comportamiento de Blizzard.

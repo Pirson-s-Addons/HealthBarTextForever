@@ -1,5 +1,5 @@
 -- Health Bar Text Forever: la vida y el poder (mana, ira, energia...) del jugador,
--- su objetivo, su foco y el objetivo de ambos siempre visibles en sus barras,
+-- su mascota, su objetivo, su foco y el objetivo de ambos siempre visibles en sus barras,
 -- solo para WoW Forever.
 --
 -- Forever trae la opcion de Blizzard "Texto de estado", pero por defecto en
@@ -20,7 +20,7 @@ local ADDON_NAME, ns = ...
 local DEFAULT_MODE = "NUMERIC"
 ns.DEFAULT_MODE = DEFAULT_MODE
 -- Marcos que se pueden activar y personalizar por separado (clave = unidad)
-local FRAMES = { "player", "target", "targettarget", "focus", "focustarget" }
+local FRAMES = { "player", "pet", "target", "targettarget", "focus", "focustarget" }
 ns.FRAMES = FRAMES
 local SCALE = CurveConstants.ScaleTo100
 
@@ -30,13 +30,13 @@ local SOURCES = {
         value = function(unit) return UnitHealth(unit) end,
         max = function(unit) return UnitHealthMax(unit) end,
         percent = function(unit) return UnitHealthPercent(unit, true, SCALE) end,
-        blizzardTexts = { "HealthBarText", "LeftText", "RightText" },
+        blizzardTexts = { "HealthBarText", "TextString", "LeftText", "RightText" },
     },
     power = {
         value = function(unit) return UnitPower(unit) end,
         max = function(unit) return UnitPowerMax(unit) end,
         percent = function(unit) return UnitPowerPercent(unit, nil, false, SCALE) end,
-        blizzardTexts = { "ManaBarText", "LeftText", "RightText" },
+        blizzardTexts = { "ManaBarText", "TextString", "LeftText", "RightText" },
     },
 }
 
@@ -105,7 +105,7 @@ local function UpdateAll()
 end
 ns.UpdateAll = UpdateAll -- el panel de opciones (UI/Options.lua) lo llama al cambiar algo
 
--- small: barras del objetivo del objetivo (70x10 y 74x7), con letra mas pequena.
+-- small: barras de la mascota y del objetivo del objetivo (70x10 y 74x7), con letra mas pequena.
 -- Para esas unidades el cliente no manda UNIT_HEALTH: Blizzard las refresca en
 -- el OnUpdate del marco, asi que el texto sigue a la propia barra.
 local function AddBar(unit, kind, bar, small)
@@ -164,6 +164,9 @@ local function OnEvent(self, event, arg1)
         ns.CreateOptions()
         AddBar("player", "health", PlayerFrame_GetHealthBar())
         AddBar("player", "power", PlayerFrame_GetManaBar())
+        -- Mascota, invocacion (demonio, elemental de agua...): textos de Blizzard en TextString
+        AddBar("pet", "health", PetFrameHealthBar, true)
+        AddBar("pet", "power", PetFrameManaBar, true)
         AddUnitFrame("target", TargetFrame)
         AddUnitFrame("focus", FocusFrame)
         self:UnregisterEvent("ADDON_LOADED")
@@ -174,6 +177,8 @@ local function OnEvent(self, event, arg1)
     elseif event == "PLAYER_FOCUS_CHANGED" then
         UpdateUnit("focus")
         UpdateUnit("focustarget")
+    elseif event == "UNIT_PET" then
+        UpdateUnit("pet")
     elseif event == "PLAYER_ENTERING_WORLD" then
         UpdateAll()
     elseif event == "UNIT_TARGET" then
@@ -188,6 +193,7 @@ frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:RegisterEvent("PLAYER_TARGET_CHANGED")
 frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
+frame:RegisterUnitEvent("UNIT_PET", "player")
 -- RegisterUnitEvent admite dos unidades por marco: el foco va en otro
 local focusEvents = CreateFrame("Frame")
 for _, event in ipairs(UNIT_EVENTS) do
