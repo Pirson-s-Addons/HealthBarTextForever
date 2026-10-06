@@ -20,6 +20,17 @@
 
 ---
 
+## 📸 Screenshots · Capturas
+
+<table>
+<tr>
+<td align="center" width="50%"><img src="https://media.forgecdn.net/attachments/1956/350/healthbar-info-png.png" alt="Health and power text on the frames"><br><sub>Health and power text on the frames · Texto de vida y poder en los marcos</sub></td>
+<td align="center" width="50%"><img src="https://media.forgecdn.net/attachments/1975/667/opcions-menu-health-text-forever-png.png" alt="Options"><br><sub>Options · Opciones</sub></td>
+</tr>
+</table>
+
+---
+
 ## What it does
 
 By default, WoW Forever only shows your health and power numbers when you hover the bar. **Health Bar Text Forever** keeps them always visible on the **player**, **pet / minion**, **target**, **target of target**, **focus** and **target of focus** frames, in the format you choose for each one.
