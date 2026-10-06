@@ -145,7 +145,7 @@ function ns.CreateOptions()
         name = "Health Bar Text Forever",
         logo = LOGO,
         github = "https://github.com/Pirson-s-Addons/HealthBarTextForever",
-        curseforge = "https://www.curseforge.com/wow/addons/health-text-forever",
+        curseforge = "https://www.curseforge.com/wow/addons/health-bar-text-forever",
         commands = { { "/htf", L.CMD_OPEN } },
     })
     local general = Settings.RegisterCanvasLayoutSubcategory(root, CreateGeneral(), L.GENERAL)
