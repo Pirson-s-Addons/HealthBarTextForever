@@ -55,7 +55,7 @@ Value and percent each go where you want: **left**, **center** or **right** insi
 ## Installation
 
 1. Download the zip from the [latest release](https://github.com/Pirson-s-Addons/HealthBarTextForever/releases/latest).
-2. Extract the `HealthBarTextForever` folder into `World of Warcraft/_classic_beta_/Interface/AddOns/`.
+2. Extract the `HealthBarTextForever` folder into `World of Warcraft/_forever_/Interface/AddOns/`.
 3. Restart WoW and enable the addon.
 
 It only loads on WoW Forever: the only TOC is `HealthBarTextForever_Camelot.toc` (`Camelot` is Forever's game type), so no other client lists it.
