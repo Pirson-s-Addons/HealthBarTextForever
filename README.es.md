@@ -33,20 +33,21 @@
 
 ## Qué hace
 
-Por defecto, WoW Forever solo muestra los números de vida y poder al pasar el ratón por la barra. **Health Bar Text Forever** los mantiene siempre visibles en los marcos del **jugador**, la **mascota / esbirro**, el **objetivo**, el **objetivo del objetivo**, el **foco** y el **objetivo del foco**, en el formato que elijas para cada uno.
+Por defecto, WoW Forever solo muestra los números de vida y poder al pasar el ratón por la barra. **Health Bar Text Forever** los mantiene siempre visibles en los marcos del **jugador**, la **mascota / esbirro**, el **objetivo**, el **objetivo del objetivo**, el **foco** y el **objetivo del foco**. Para cada marco y barra (vida y poder) eliges qué se muestra y dónde.
 
-| Formato | Ejemplo |
+| Texto | Ejemplo |
 |---|---|
 | **Valor** | `1.203 / 1.500` |
+| **Valor abreviado** | `13mil / 14mil` (`999 / 1mil` por debajo de 1.000) |
 | **Porcentaje** | `86%` |
-| **Abreviado** | `13mil / 14mil` (`999 / 1mil` por debajo de 1.000) |
-| **Ambos** | `86% 1.203 / 1.500` |
+
+El valor y el porcentaje van cada uno donde quieras: **izquierda**, **centro** o **derecha** dentro de la barra, o **justo fuera** de ella por cualquiera de los dos lados. En el mismo sitio comparten línea (`86% 1.203 / 1.500`); separados nunca se pisan (`86%` a la izquierda, `1.203 / 1.500` a la derecha).
 
 ## Funciones
 
 - Vida y poder (maná, ira, energía...) siempre visibles en los marcos del jugador, la mascota / esbirro, el objetivo, el objetivo del objetivo, el foco y el objetivo del foco.
 - Cada marco se activa o desactiva por separado: desactivado, vuelve al comportamiento de Blizzard.
-- Cuatro formatos, a elegir por marco: valor, porcentaje, abreviado o ambos.
+- Por marco y por barra: valor (completo, abreviado u oculto), porcentaje (sí o no) y la posición de cada uno: izquierda, centro, derecha, fuera a la izquierda o fuera a la derecha.
 - Texto opcional en las barras de poder (activado por defecto). Si lo desactivas, esas barras vuelven al comportamiento de Blizzard.
 - El texto se oculta cuando no hay unidad o está muerta, así nunca tapa el "Muerto" del propio juego.
 - Ligero, sin librerías. Los ajustes están en el panel del propio juego: **Opciones → AddOns**.
@@ -62,7 +63,7 @@ Solo se carga en WoW Forever: su único `.toc` es `HealthBarTextForever_Camelot.
 ## Uso
 
 - `/htf` abre los ajustes.
-- **Opciones → AddOns → Health Bar Text Forever → General**: en qué marcos se ve el texto, el formato de cada uno y "Mostrar en las barras de poder".
+- **Opciones → AddOns → Health Bar Text Forever → General**: eliges un marco, lo activas o desactivas y configuras sus barras de vida y de poder; además, "Mostrar en las barras de poder".
 
 ## Notas
 

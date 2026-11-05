@@ -66,7 +66,10 @@ local function UrlBox(panel, y, label, url)
     return y - 32
 end
 
--- info: { name, logo, github, curseforge, commands = { { "/cmd", desc }, ... } }
+-- info: { name, listName, logo, icon, github, curseforge, commands = { { "/cmd", desc }, ... } }
+-- listName: nombre para la lista de Opciones si el completo no cabe (como en
+-- DungeonQuestAtlas): si no cabe, la etiqueta parte en dos lineas y el icono sube.
+-- icon: version del logo para 16 px en esa lista (opcional).
 -- Registra la categoria raiz y la devuelve para colgar de ella los ajustes.
 function ns.CreateAbout(info)
     local panel = CreateFrame("Frame")
@@ -117,7 +120,7 @@ function ns.CreateAbout(info)
 
     -- Logo y morado del addon en la lista de Opciones
     local category = Settings.RegisterCanvasLayoutCategory(panel,
-        "|T" .. info.logo .. ":16:16|t  " .. BRAND .. info.name .. "|r")
+        "|T" .. (info.icon or info.logo) .. ":16:16|t  " .. BRAND .. (info.listName or info.name) .. "|r")
     Settings.RegisterAddOnCategory(category)
     return category
 end

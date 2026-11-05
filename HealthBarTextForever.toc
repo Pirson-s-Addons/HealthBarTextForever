@@ -1,7 +1,7 @@
 ## Interface: 16001
-## Version: 1.04
+## Version: 1.05
 ## Author: Pirson
-## IconTexture: Interface\AddOns\HealthBarTextForever\img\logo_htf
+## IconTexture: Interface\AddOns\HealthBarTextForever\img\icon_htf
 ## Title: |cffd597ffHealth Bar Text Forever|r
 
 # https://warcraft.wiki.gg/wiki/Addon_Categories

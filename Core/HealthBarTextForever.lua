@@ -17,11 +17,10 @@
 
 local ADDON_NAME, ns = ...
 
-local DEFAULT_MODE = "NUMERIC"
-ns.DEFAULT_MODE = DEFAULT_MODE
 -- Marcos que se pueden activar y personalizar por separado (clave = unidad)
 local FRAMES = { "player", "pet", "target", "targettarget", "focus", "focustarget" }
 ns.FRAMES = FRAMES
+local KINDS = { "health", "power" }
 local SCALE = CurveConstants.ScaleTo100
 
 -- Que leer para cada tipo de barra
@@ -54,31 +53,58 @@ local function Percent(src, unit)
     return string.format("%.0f%%", src.percent(unit))
 end
 
-local FORMATS = {
-    NUMERIC = Numeric,
-    PERCENT = Percent,
-    SHORT = Short,
-    BOTH = function(src, unit) return Percent(src, unit) .. " " .. Numeric(src, unit) end,
+-- Estilos del valor ("NONE" = oculto) y posiciones de cada texto
+local VALUES = { FULL = Numeric, SHORT = Short }
+ns.VALUE_STYLES = { "FULL", "SHORT", "NONE" }
+ns.POSITIONS = { "LEFT", "CENTER", "RIGHT", "OUTLEFT", "OUTRIGHT" }
+-- { punto del texto, punto de la barra, x }: dentro de la barra o pegado a su lado
+local ANCHORS = {
+    LEFT = { "LEFT", "LEFT", 4 },
+    CENTER = { "CENTER", "CENTER", 0 },
+    RIGHT = { "RIGHT", "RIGHT", -4 },
+    OUTLEFT = { "RIGHT", "LEFT", -4 },
+    OUTRIGHT = { "LEFT", "RIGHT", 4 },
 }
 
--- Una entrada por barra: { unit, kind, bar, text }
+-- Cada barra (vida y poder de cada marco): que valor, si lleva %, y donde va cada uno
+local function DefaultBar()
+    return { value = "FULL", valuePos = "CENTER", percent = false, percentPos = "LEFT" }
+end
+function ns.DefaultFrame()
+    return { show = true, health = DefaultBar(), power = DefaultBar() }
+end
+-- Formato unico de las versiones anteriores: { valor, % }, los dos en el centro
+local LEGACY = { NUMERIC = { "FULL", false }, SHORT = { "SHORT", false }, PERCENT = { "NONE", true }, BOTH = { "FULL", true } }
+
+-- Una entrada por barra: { unit, kind, bar, valueText, percentText }
 local bars = {}
 
 local function IsEnabled(entry)
     return HealthBarTextForeverDB.frames[entry.unit].show and (entry.kind == "health" or HealthBarTextForeverDB.showPower)
 end
 
+-- Sin cuentas ni comprobaciones sobre los textos (pueden ser secretos): las
+-- ramas solo miran la configuracion.
 local function Update(entry)
-    local text, unit = entry.text, entry.unit
+    local valueText, percentText, unit = entry.valueText, entry.percentText, entry.unit
     -- Sin unidad no hay nada que pintar, y con la unidad muerta Blizzard ya pone
     -- su "Muerto" (DeadText, que no se toca) en el centro de la barra. La barra
     -- del jugador no tiene DeadText: ahi se sigue viendo el 0.
     if not IsEnabled(entry) or not UnitExists(unit) or (unit ~= "player" and UnitIsDeadOrGhost(unit)) then
-        text:SetText("")
+        valueText:SetText("")
+        percentText:SetText("")
         return
     end
-    local format = FORMATS[HealthBarTextForeverDB.frames[unit].mode] or FORMATS[DEFAULT_MODE]
-    text:SetText(format(SOURCES[entry.kind], unit))
+    local cfg = HealthBarTextForeverDB.frames[unit][entry.kind]
+    local src, value = SOURCES[entry.kind], VALUES[cfg.value]
+    if value and cfg.percent and cfg.valuePos == cfg.percentPos then
+        -- En el mismo sitio, una sola linea: "86% 1.203 / 1.500"
+        valueText:SetText(Percent(src, unit) .. " " .. value(src, unit))
+        percentText:SetText("")
+        return
+    end
+    if value then valueText:SetText(value(src, unit)) else valueText:SetText("") end
+    if cfg.percent then percentText:SetText(Percent(src, unit)) else percentText:SetText("") end
 end
 
 local function UpdateUnit(unit, kind)
@@ -97,8 +123,26 @@ local function ApplyBlizzardTexts(entry)
     end
 end
 
+-- Izquierda y derecha, sobre el LeftText / RightText de Blizzard si la barra lo
+-- tiene: llevan el margen de cada barra (la de poder del objetivo mide 134 px y
+-- su RightText va a -13, porque el final queda bajo el borde del marco)
+local BLIZZARD_SIDE = { LEFT = "LeftText", RIGHT = "RightText" }
+
+local function Place(text, bar, pos)
+    local a, side = ANCHORS[pos], bar[BLIZZARD_SIDE[pos] or ""]
+    text:ClearAllPoints()
+    if side then
+        text:SetPoint(a[1], side, a[1], 0, 0)
+    else
+        text:SetPoint(a[1], bar, a[2], a[3], 0)
+    end
+end
+
 local function UpdateAll()
     for _, entry in ipairs(bars) do
+        local cfg = HealthBarTextForeverDB.frames[entry.unit][entry.kind]
+        Place(entry.valueText, entry.bar, cfg.valuePos)
+        Place(entry.percentText, entry.bar, cfg.percentPos)
         ApplyBlizzardTexts(entry)
         Update(entry)
     end
@@ -110,13 +154,15 @@ ns.UpdateAll = UpdateAll -- el panel de opciones (UI/Options.lua) lo llama al ca
 -- el OnUpdate del marco, asi que el texto sigue a la propia barra.
 local function AddBar(unit, kind, bar, small)
     if not bar then return end
-    local text = bar:CreateFontString(nil, "OVERLAY", "TextStatusBarText")
-    text:SetPoint("CENTER", bar, "CENTER", 0, 0)
-    local entry = { unit = unit, kind = kind, bar = bar, text = text }
+    local entry = { unit = unit, kind = kind, bar = bar,
+        valueText = bar:CreateFontString(nil, "OVERLAY", "TextStatusBarText"),
+        percentText = bar:CreateFontString(nil, "OVERLAY", "TextStatusBarText") }
     bars[#bars + 1] = entry
     if small then
-        local font, _, flags = text:GetFont()
-        text:SetFont(font, 8, flags)
+        for _, text in ipairs({ entry.valueText, entry.percentText }) do
+            local font, _, flags = text:GetFont()
+            text:SetFont(font, 8, flags)
+        end
         local function Refresh() Update(entry) end
         bar:HookScript("OnValueChanged", Refresh)
         bar:HookScript("OnMinMaxChanged", Refresh)
@@ -151,13 +197,27 @@ local function OnEvent(self, event, arg1)
         local db = HealthBarTextForeverDB or HealthTextForeverDB or {}
         HealthBarTextForeverDB = db
         if db.showPower == nil then db.showPower = true end
-        -- Cada marco con su interruptor y su formato. Las versiones anteriores
-        -- guardaban un solo formato (db.mode): pasa a ser el de todos los marcos.
+        -- Cada marco con su interruptor y, por barra (vida y poder), que valor
+        -- muestra, si lleva % y donde va cada uno. Las versiones anteriores
+        -- guardaban un formato por marco (f.mode) o uno para todos (db.mode):
+        -- se convierte con los dos textos en el centro, como se veia.
         db.frames = db.frames or {}
         for _, unit in ipairs(FRAMES) do
             local f = db.frames[unit] or {}
             if f.show == nil then f.show = true end
-            if not FORMATS[f.mode] then f.mode = FORMATS[db.mode] and db.mode or DEFAULT_MODE end
+            local old = LEGACY[f.mode] or LEGACY[db.mode]
+            for _, kind in ipairs(KINDS) do
+                local b = f[kind]
+                if type(b) ~= "table" then
+                    b = old and { value = old[1], valuePos = "CENTER", percent = old[2], percentPos = "CENTER" } or DefaultBar()
+                end
+                if not VALUES[b.value] and b.value ~= "NONE" then b.value = "FULL" end
+                if not ANCHORS[b.valuePos] then b.valuePos = "CENTER" end
+                if not ANCHORS[b.percentPos] then b.percentPos = "LEFT" end
+                b.percent = b.percent == true
+                f[kind] = b
+            end
+            f.mode = nil
             db.frames[unit] = f
         end
         db.mode = nil
