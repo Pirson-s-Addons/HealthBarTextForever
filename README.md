@@ -46,6 +46,7 @@ Value and percent each go where you want: **left**, **center** or **right** insi
 ## Features
 
 - Always-visible health and power (mana, rage, energy...) on the player, pet / minion, target, target of target, focus and target of focus frames.
+- Only on mouseover, per frame: hide the text until you hover the bar, keeping its format and position.
 - Turn each frame on or off: an off frame goes back to Blizzard's default behavior.
 - Per frame and per bar: value (full, short or hidden), percent (on or off) and the position of each one: left, center, right, outside left or outside right.
 - Optional text on the power bars (on by default). Turn it off and those bars go back to Blizzard's default behavior.

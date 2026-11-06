@@ -118,7 +118,13 @@ local function CreateGeneral()
 
     local show = Checkbox("HealthBarTextForever_ShowFrame", x, -192, L.SHOW_FRAME, L.SHOW_FRAME_TOOLTIP,
         function(on) Frame().show = on end)
-    refreshers[#refreshers + 1] = function() show:SetChecked(Frame().show) end
+    local hover = Checkbox("HealthBarTextForever_HoverOnly", x + 20, -216, L.HOVER_ONLY, L.HOVER_ONLY_TOOLTIP,
+        function(on) Frame().hover = on end)
+    refreshers[#refreshers + 1] = function()
+        show:SetChecked(Frame().show)
+        hover:SetChecked(Frame().hover)
+        SetActive(hover, Frame().show)
+    end
 
     -- Una seccion por barra, sangrada: valor (estilo + posicion) y % (casilla + posicion)
     local POS_X = x + 340
@@ -150,15 +156,15 @@ local function CreateGeneral()
             SetDropdownEnabled(percentPos, on and Bar().percent)
         end
     end
-    BarSection("health", L.HEALTH_BAR, -228)
-    BarSection("power", L.POWER_BAR, -322)
-    Line(-414)
+    BarSection("health", L.HEALTH_BAR, -252)
+    BarSection("power", L.POWER_BAR, -346)
+    Line(-438)
 
     panel:SetScript("OnShow", Refresh)
 
     local reset = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
     reset:SetSize(180, 26)
-    reset:SetPoint("TOPLEFT", x, -432)
+    reset:SetPoint("TOPLEFT", x, -456)
     reset:SetText(L.DEFAULTS)
     reset:SetScript("OnClick", function()
         HealthBarTextForeverDB.showPower = true

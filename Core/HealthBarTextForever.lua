@@ -71,7 +71,7 @@ local function DefaultBar()
     return { value = "FULL", valuePos = "CENTER", percent = false, percentPos = "LEFT" }
 end
 function ns.DefaultFrame()
-    return { show = true, health = DefaultBar(), power = DefaultBar() }
+    return { show = true, hover = false, health = DefaultBar(), power = DefaultBar() }
 end
 -- Formato unico de las versiones anteriores: { valor, % }, los dos en el centro
 local LEGACY = { NUMERIC = { "FULL", false }, SHORT = { "SHORT", false }, PERCENT = { "NONE", true }, BOTH = { "FULL", true } }
@@ -123,6 +123,14 @@ local function ApplyBlizzardTexts(entry)
     end
 end
 
+-- "Solo al pasar el raton": los textos se siguen actualizando, invisibles, y la
+-- barra que tiene el raton encima los enseña. Solo mira la configuracion.
+local function ApplyHover(entry)
+    local alpha = (entry.hovered or not HealthBarTextForeverDB.frames[entry.unit].hover) and 1 or 0
+    entry.valueText:SetAlpha(alpha)
+    entry.percentText:SetAlpha(alpha)
+end
+
 -- Izquierda y derecha, sobre el LeftText / RightText de Blizzard si la barra lo
 -- tiene: llevan el margen de cada barra (la de poder del objetivo mide 134 px y
 -- su RightText va a -13, porque el final queda bajo el borde del marco)
@@ -144,6 +152,7 @@ local function UpdateAll()
         Place(entry.valueText, entry.bar, cfg.valuePos)
         Place(entry.percentText, entry.bar, cfg.percentPos)
         ApplyBlizzardTexts(entry)
+        ApplyHover(entry)
         Update(entry)
     end
 end
@@ -158,6 +167,15 @@ local function AddBar(unit, kind, bar, small)
         valueText = bar:CreateFontString(nil, "OVERLAY", "TextStatusBarText"),
         percentText = bar:CreateFontString(nil, "OVERLAY", "TextStatusBarText") }
     bars[#bars + 1] = entry
+    -- Todas heredan TextStatusBar (enableMouseMotion): Blizzard usa estos mismos scripts
+    local function Hover(on)
+        return function()
+            entry.hovered = on
+            ApplyHover(entry)
+        end
+    end
+    bar:HookScript("OnEnter", Hover(true))
+    bar:HookScript("OnLeave", Hover(false))
     if small then
         for _, text in ipairs({ entry.valueText, entry.percentText }) do
             local font, _, flags = text:GetFont()
@@ -205,6 +223,7 @@ local function OnEvent(self, event, arg1)
         for _, unit in ipairs(FRAMES) do
             local f = db.frames[unit] or {}
             if f.show == nil then f.show = true end
+            f.hover = f.hover == true
             local old = LEGACY[f.mode] or LEGACY[db.mode]
             for _, kind in ipairs(KINDS) do
                 local b = f[kind]

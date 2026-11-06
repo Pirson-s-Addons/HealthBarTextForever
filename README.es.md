@@ -46,6 +46,7 @@ El valor y el porcentaje van cada uno donde quieras: **izquierda**, **centro** o
 ## Funciones
 
 - Vida y poder (maná, ira, energía...) siempre visibles en los marcos del jugador, la mascota / esbirro, el objetivo, el objetivo del objetivo, el foco y el objetivo del foco.
+- Solo al pasar el ratón, por marco: oculta el texto hasta que pases por la barra, con su formato y posición.
 - Cada marco se activa o desactiva por separado: desactivado, vuelve al comportamiento de Blizzard.
 - Por marco y por barra: valor (completo, abreviado u oculto), porcentaje (sí o no) y la posición de cada uno: izquierda, centro, derecha, fuera a la izquierda o fuera a la derecha.
 - Texto opcional en las barras de poder (activado por defecto). Si lo desactivas, esas barras vuelven al comportamiento de Blizzard.
