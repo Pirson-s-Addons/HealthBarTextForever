@@ -54,8 +54,13 @@ local function Percent(src, unit)
 end
 
 -- Estilos del valor ("NONE" = oculto) y posiciones de cada texto
-local VALUES = { FULL = Numeric, SHORT = Short }
-ns.VALUE_STYLES = { "FULL", "SHORT", "NONE" }
+local VALUES = {
+    FULL = Numeric,
+    SHORT = Short,
+    CURRENT = function(src, unit) return BreakUpLargeNumbers(src.value(unit)) end,
+    CURRENT_SHORT = function(src, unit) return AbbreviateNumbers(src.value(unit)) end,
+}
+ns.VALUE_STYLES = { "FULL", "SHORT", "CURRENT", "CURRENT_SHORT", "NONE" }
 ns.POSITIONS = { "LEFT", "CENTER", "RIGHT", "OUTLEFT", "OUTRIGHT" }
 -- { punto del texto, punto de la barra, x }: dentro de la barra o pegado a su lado
 local ANCHORS = {

@@ -1,5 +1,5 @@
 ## Interface: 16001
-## Version: 1.06
+## Version: 1.07
 ## Author: Pirson
 ## IconTexture: Interface\AddOns\HealthBarTextForever\img\icon_htf
 ## Title: |cffd597ffHealth Bar Text Forever|r

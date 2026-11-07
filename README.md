@@ -39,6 +39,7 @@ By default, WoW Forever only shows your health and power numbers when you hover 
 |---|---|
 | **Value** | `1.203 / 1.500` |
 | **Short value** | `13K / 14K` (`999 / 1K` below 1,000) |
+| **Current value only** | `1.203` or `13K`, without the maximum |
 | **Percent** | `86%` |
 
 Value and percent each go where you want: **left**, **center** or **right** inside the bar, or **just outside it** on either side. Put them in the same spot and they share one line (`86% 1.203 / 1.500`); split them and they never overlap (`86%` on the left, `1.203 / 1.500` on the right).
@@ -48,7 +49,7 @@ Value and percent each go where you want: **left**, **center** or **right** insi
 - Always-visible health and power (mana, rage, energy...) on the player, pet / minion, target, target of target, focus and target of focus frames.
 - Only on mouseover, per frame: hide the text until you hover the bar, keeping its format and position.
 - Turn each frame on or off: an off frame goes back to Blizzard's default behavior.
-- Per frame and per bar: value (full, short or hidden), percent (on or off) and the position of each one: left, center, right, outside left or outside right.
+- Per frame and per bar: value (full, short, current only or hidden), percent (on or off) and the position of each one: left, center, right, outside left or outside right.
 - Optional text on the power bars (on by default). Turn it off and those bars go back to Blizzard's default behavior.
 - The text hides with no unit or a dead one, so it never covers the game's own "Dead" label.
 - Lightweight, no libraries. Settings live in the game's own **Options → AddOns** panel.
