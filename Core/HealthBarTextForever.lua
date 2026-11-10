@@ -88,9 +88,30 @@ local function IsEnabled(entry)
     return HealthBarTextForeverDB.frames[entry.unit].show and (entry.kind == "health" or HealthBarTextForeverDB.showPower)
 end
 
+-- ClassicUI Forever deja invisibles (alpha 0) las barras de Blizzard, y con ellas
+-- nuestros textos, y pinta las suyas encima: frame.fcui.host.fcui.health / power,
+-- con los textos de Blizzard en un marco suyo por encima del arte. En el objetivo
+-- del objetivo, totFrame.fcui.totHealth / totPower bajo su artHolder.
+-- Devuelve su barra y el marco que tiene que quedar por debajo de nuestros textos.
+local function ClassicUIBar(entry)
+    local own = entry.frame and entry.frame.fcui
+    if not own then return end
+    if entry.tot then
+        local bar = own[entry.kind == "health" and "totHealth" or "totPower"]
+        if bar and own.artHolder then return bar, own.artHolder end
+        return
+    end
+    local bars, ts = own.host and own.host.fcui, entry.bar.TextString
+    if bars and bars[entry.kind] and ts then return bars[entry.kind], ts:GetParent() end
+end
+
+local Layout
+
 -- Sin cuentas ni comprobaciones sobre los textos (pueden ser secretos): las
 -- ramas solo miran la configuracion.
 local function Update(entry)
+    -- ClassicUI monta sus barras al entrar (o al salir de combate): se mudan una vez
+    if not entry.overlay and ClassicUIBar(entry) then return Layout(entry) end
     local valueText, percentText, unit = entry.valueText, entry.percentText, entry.unit
     -- Sin unidad no hay nada que pintar, y con la unidad muerta Blizzard ya pone
     -- su "Muerto" (DeadText, que no se toca) en el centro de la barra. La barra
@@ -151,24 +172,40 @@ local function Place(text, bar, pos)
     end
 end
 
-local function UpdateAll()
-    for _, entry in ipairs(bars) do
-        local cfg = HealthBarTextForeverDB.frames[entry.unit][entry.kind]
-        Place(entry.valueText, entry.bar, cfg.valuePos)
-        Place(entry.percentText, entry.bar, cfg.percentPos)
-        ApplyBlizzardTexts(entry)
-        ApplyHover(entry)
-        Update(entry)
+Layout = function(entry)
+    local bar = entry.bar
+    local classicBar, below = ClassicUIBar(entry)
+    if classicBar then
+        -- Un marco nuestro sobre su barra (se oculta con ella) y por encima de su arte
+        if not entry.overlay then
+            entry.overlay = CreateFrame("Frame", nil, classicBar)
+            entry.overlay:SetAllPoints(classicBar)
+            entry.valueText:SetParent(entry.overlay)
+            entry.percentText:SetParent(entry.overlay)
+        end
+        entry.overlay:SetFrameLevel(below:GetFrameLevel() + 1)
+        bar = classicBar
     end
+    local cfg = HealthBarTextForeverDB.frames[entry.unit][entry.kind]
+    Place(entry.valueText, bar, cfg.valuePos)
+    Place(entry.percentText, bar, cfg.percentPos)
+    ApplyBlizzardTexts(entry)
+    ApplyHover(entry)
+    Update(entry)
+end
+
+local function UpdateAll()
+    for _, entry in ipairs(bars) do Layout(entry) end
 end
 ns.UpdateAll = UpdateAll -- el panel de opciones (UI/Options.lua) lo llama al cambiar algo
 
 -- small: barras de la mascota y del objetivo del objetivo (70x10 y 74x7), con letra mas pequena.
 -- Para esas unidades el cliente no manda UNIT_HEALTH: Blizzard las refresca en
 -- el OnUpdate del marco, asi que el texto sigue a la propia barra.
-local function AddBar(unit, kind, bar, small)
+-- frame: el marco de unidad, para encontrar las barras de ClassicUI (tot: es un totFrame)
+local function AddBar(unit, kind, bar, small, frame, tot)
     if not bar then return end
-    local entry = { unit = unit, kind = kind, bar = bar,
+    local entry = { unit = unit, kind = kind, bar = bar, frame = frame, tot = tot,
         valueText = bar:CreateFontString(nil, "OVERLAY", "TextStatusBarText"),
         percentText = bar:CreateFontString(nil, "OVERLAY", "TextStatusBarText") }
     bars[#bars + 1] = entry
@@ -197,11 +234,12 @@ end
 local function AddUnitFrame(unit, frame)
     if not frame then return end
     local main = frame.TargetFrameContent.TargetFrameContentMain
-    AddBar(unit, "health", main.HealthBarsContainer.HealthBar)
-    AddBar(unit, "power", main.ManaBar)
-    if frame.totFrame then
-        AddBar(unit .. "target", "health", frame.totFrame.HealthBar, true)
-        AddBar(unit .. "target", "power", frame.totFrame.ManaBar, true)
+    AddBar(unit, "health", main.HealthBarsContainer.HealthBar, false, frame)
+    AddBar(unit, "power", main.ManaBar, false, frame)
+    local tot = frame.totFrame
+    if tot then
+        AddBar(unit .. "target", "health", tot.HealthBar, true, tot, true)
+        AddBar(unit .. "target", "power", tot.ManaBar, true, tot, true)
     end
 end
 
@@ -246,8 +284,8 @@ local function OnEvent(self, event, arg1)
         end
         db.mode = nil
         ns.CreateOptions()
-        AddBar("player", "health", PlayerFrame_GetHealthBar())
-        AddBar("player", "power", PlayerFrame_GetManaBar())
+        AddBar("player", "health", PlayerFrame_GetHealthBar(), false, PlayerFrame)
+        AddBar("player", "power", PlayerFrame_GetManaBar(), false, PlayerFrame)
         -- Mascota, invocacion (demonio, elemental de agua...): textos de Blizzard en TextString
         AddBar("pet", "health", PetFrameHealthBar, true)
         AddBar("pet", "power", PetFrameManaBar, true)
