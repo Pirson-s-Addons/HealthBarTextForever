@@ -1,26 +1,13 @@
-<h1 align="center">Health Bar Text Forever</h1>
+<p align="center"><a href="https://www.curseforge.com/wow/addons/health-bar-text-forever"><img src="https://raw.githubusercontent.com/Pirson-s-Addons/.github/main/profile/assets/readme-hb-en.svg" width="100%" alt="Health Bar Text Forever"/></a></p>
+
+<p align="center"><b>English</b> · <a href="README.es.md">Español</a></p>
 
 <p align="center">
-  <b>Always-visible health and power text on the player, pet, target and focus frames for World of Warcraft: Forever</b>
+<a href="https://www.curseforge.com/wow/addons/health-bar-text-forever"><b>CurseForge</b></a> ·
+<a href="https://github.com/Pirson-s-Addons/HealthBarTextForever/releases/latest"><b>Download</b></a>
 </p>
 
-<p align="center">
-<a href="https://github.com/Pirson-s-Addons/HealthBarTextForever/releases/latest">
-<img src="https://img.shields.io/github/v/release/Pirson-s-Addons/HealthBarTextForever?style=for-the-badge&color=A78BFA">
-</a>
-<img src="https://img.shields.io/badge/WoW_Forever-1.60.1-C4B5FD?style=for-the-badge">
-<a href="LICENSE">
-<img src="https://img.shields.io/badge/License-MIT-E9D5FF?style=for-the-badge">
-</a>
-</p>
-
-<p align="center">
-<a href="README.es.md">🇪🇸 Español</a>
-</p>
-
----
-
-## 📸 Screenshots
+## Screenshots
 
 <table>
 <tr>
@@ -28,8 +15,6 @@
 <td align="center" width="50%"><img src="https://media.forgecdn.net/attachments/1975/667/opcions-menu-health-text-forever-png.png" alt="Options"><br><sub>Options</sub></td>
 </tr>
 </table>
-
----
 
 ## What it does
 
@@ -54,6 +39,11 @@ Value and percent each go where you want: **left**, **center** or **right** insi
 - The text hides with no unit or a dead one, so it never covers the game's own "Dead" label.
 - Lightweight, no libraries. Settings live in the game's own **Options → AddOns** panel.
 
+## Usage
+
+- `/htf` opens the settings.
+- **Options → AddOns → Health Bar Text Forever → General**: pick a frame, turn it on or off and set its health and power bars; plus "Show on power bars".
+
 ## Installation
 
 1. Download the zip from the [latest release](https://github.com/Pirson-s-Addons/HealthBarTextForever/releases/latest).
@@ -62,15 +52,10 @@ Value and percent each go where you want: **left**, **center** or **right** insi
 
 It only loads on WoW Forever: the only TOC is `HealthBarTextForever_Camelot.toc` (`Camelot` is Forever's game type), so no other client lists it.
 
-## Usage
-
-- `/htf` opens the settings.
-- **Options → AddOns → Health Bar Text Forever → General**: pick a frame, turn it on or off and set its health and power bars; plus "Show on power bars".
-
 ## Notes
 
 In WoW Forever, health and power are **secret values** for addons during combat: they can be shown, but not used in math. This addon never computes anything with them: the percent comes from the game itself (`UnitHealthPercent` / `UnitPowerPercent`) and the numbers are only formatted for display.
 
----
+<br/>
 
-**Author**: Pirson · [GitHub](https://github.com/Pirson-s-Addons) · [CurseForge](https://www.curseforge.com/members/pirson/projects) · MIT License
+<p align="center"><a href="https://github.com/Pirson-s-Addons"><img src="https://raw.githubusercontent.com/Pirson-s-Addons/.github/main/profile/assets/readme-footer-en.svg" width="100%" alt="Part of Pirson's Addons. See all addons."/></a></p>
