@@ -151,8 +151,16 @@ end
 
 -- "Solo al pasar el raton": los textos se siguen actualizando, invisibles, y la
 -- barra que tiene el raton encima los enseña. Solo mira la configuracion.
+-- Con la interfaz de mando no hay raton que pase por encima: "solo al pasar el raton"
+-- dejaria el texto oculto siempre, asi que se ve
+local function GamepadUI()
+    local T = Enum and Enum.InputDeviceInterfaceType
+    local style = C_InputInterfaceStyle and C_InputInterfaceStyle.GetCurrentStyle
+    return T and T.Gamepad and style and style() == T.Gamepad or false
+end
+
 local function ApplyHover(entry)
-    local alpha = (entry.hovered or not HealthBarTextForeverDB.frames[entry.unit].hover) and 1 or 0
+    local alpha = (entry.hovered or GamepadUI() or not HealthBarTextForeverDB.frames[entry.unit].hover) and 1 or 0
     entry.valueText:SetAlpha(alpha)
     entry.percentText:SetAlpha(alpha)
 end

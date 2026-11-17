@@ -193,3 +193,9 @@ function ns.CreateOptions()
     SLASH_HEALTHBARTEXTFOREVER1 = "/htf"
     SlashCmdList.HEALTHBARTEXTFOREVER = function() Settings.OpenToCategory(general:GetID()) end
 end
+
+-- Menu de addons del minimapa (## AddonCompartmentFunc del .toc): lo mismo que el comando
+function HealthBarTextForever_OnAddonCompartmentClick()
+    local open = SlashCmdList and SlashCmdList.HEALTHBARTEXTFOREVER
+    if open then open("") end
+end

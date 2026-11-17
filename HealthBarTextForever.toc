@@ -1,5 +1,5 @@
 ## Interface: 16001
-## Version: 1.08
+## Version: 1.09
 ## Author: Pirson
 ## IconTexture: Interface\AddOns\HealthBarTextForever\img\icon_htf
 ## Title: |cffd597ffHealth Bar Text Forever|r
@@ -97,6 +97,12 @@
 
 ## SavedVariables: HealthBarTextForeverDB
 ## OptionalDeps: HealthTextForever
+## X-Curse-Project-ID: 1700978
+## X-License: MIT
+## X-Copyright: Copyright (c) 2025-2026 Pirson
+## X-Website: https://github.com/Pirson-s-Addons/HealthBarTextForever
+## X-Localizations: enUS, esES, esMX, deDE, frFR, itIT, ptBR, ruRU, koKR, zhCN, zhTW, plPL, svSE, noNO, trTR, jaJP, arSA, hiIN, thTH, viVN, csCZ
+## AddonCompartmentFunc: HealthBarTextForever_OnAddonCompartmentClick
 
 # Solo WoW Forever: el sufijo _Camelot es el game type que busca ese cliente, y
 # sin un .toc generico ningun otro cliente lista el addon.
