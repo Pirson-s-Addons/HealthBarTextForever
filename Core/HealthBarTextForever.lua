@@ -252,7 +252,7 @@ local function AddUnitFrame(unit, frame)
 end
 
 local UNIT_EVENTS = {
-    "UNIT_HEALTH", "UNIT_MAXHEALTH", "UNIT_POWER_UPDATE", "UNIT_MAXPOWER",
+    "UNIT_HEALTH", "UNIT_MAXHEALTH", "UNIT_POWER_FREQUENT", "UNIT_MAXPOWER", -- FREQUENT: el texto sube al ritmo de la barra, UPDATE va a saltos
     "UNIT_DISPLAYPOWER", -- cambio de tipo de poder: forma de druida, objetivo con otra clase...
     "UNIT_TARGET",       -- cambia su objetivo: otro "objetivo del objetivo"
 }
