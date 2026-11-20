@@ -11,8 +11,11 @@
 
 <table>
 <tr>
-<td align="center" width="50%"><img src="https://media.forgecdn.net/attachments/1956/350/healthbar-info-png.png" alt="Health and power text on the frames"><br><sub>Health and power text on the frames</sub></td>
-<td align="center" width="50%"><img src="https://media.forgecdn.net/attachments/1975/667/opcions-menu-health-text-forever-png.png" alt="Options"><br><sub>Options</sub></td>
+<td align="center" width="50%"><img src="https://media.forgecdn.net/attachments/2243/991/vida-barra-png.png" alt="Health and power, always visible"><br><sub>Health and power, always visible</sub></td>
+<td align="center" width="50%"><img src="https://media.forgecdn.net/attachments/2243/990/menu-vida1-png.png" alt="Pick how each number looks"><br><sub>Pick how each number looks</sub></td>
+</tr>
+<tr>
+<td align="center" width="50%"><img src="https://media.forgecdn.net/attachments/2243/989/menu-vida2-png.png" alt="Every frame, set up on its own"><br><sub>Every frame, set up on its own</sub></td>
 </tr>
 </table>
 
