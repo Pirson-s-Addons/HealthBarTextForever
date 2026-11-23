@@ -1,0 +1,5 @@
+package-as: HealthBarTextForever
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown

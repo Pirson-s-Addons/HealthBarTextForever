@@ -98,6 +98,7 @@
 ## SavedVariables: HealthBarTextForeverDB
 ## OptionalDeps: HealthTextForever
 ## X-Curse-Project-ID: 1700978
+## X-Wago-ID: aNerpX62
 ## X-License: MIT
 ## X-Copyright: Copyright (c) 2025-2026 Pirson
 ## X-Website: https://github.com/Pirson-s-Addons/HealthBarTextForever
